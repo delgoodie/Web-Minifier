@@ -25,12 +25,12 @@ Or if you don't trust me you can download the python script and just run it in y
 ISSUES
 --------------
 **Can't get to Environment Variables**
-You might not have admin permissions, contact owner of laptop
+<br>You might not have admin permissions, contact owner of laptop
 
 **Can't find Python path?**
-Did you download Python? Did you check off the Add Path checkbox when you downloaded it?
+<br>Did you download Python? Did you check off the Add Path checkbox when you downloaded it?
 
 **Error message when you run the executable?**
-Did you include a path to the website folder you want to minify? If it still doesn't work email me at delwillgiudice@gmail.com
+<br>Did you include a path to the website folder you want to minify? If it still doesn't work email me at delwillgiudice@gmail.com
 
 
