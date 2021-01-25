@@ -15,7 +15,7 @@ Your main html file must be named index.html
 This app **WILL NOT** modify any of the original code.
 
 You can download the exe and put it in your python folder in paths (mine is C:\Users\wdelgiudice\AppData\Roaming\Python\Python39\Scripts)
-<br>To find yours hit WinKey, type <code>Environment Variables</code>
+<br>To find yours hit <kbd>⊞ Win</kbd>, type <code>Environment Variables</code>
 <br>click <code>Path</code> and find the path with python in it
 <br>Next copy the path and paste it into your <code>File Explorer</code>
 <br>Drag and drop the exe file into that folder and boom, you can just type minify into your console with a folder path!
