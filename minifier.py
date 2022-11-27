@@ -8,10 +8,11 @@ import sys
 
 
 minPath = str(os.path.join(Path.home(), "Downloads\\"))
-websitePath = sys.argv[1]
+websitePath = "C:\\Users\\delwi\\Documents\\Code\\Radiance Model\\"  # sys.argv[1]
 
-if(websitePath[-1] != "\\"):
+if websitePath[-1] != "\\":
     websitePath += "\\"
+
 
 def rmtree(top):
     for root, dirs, files in os.walk(top, topdown=False):
@@ -21,8 +22,9 @@ def rmtree(top):
             os.remove(filename)
         for name in dirs:
             os.rmdir(os.path.join(root, name))
-    os.rmdir(top)   
-    
+    os.rmdir(top)
+
+
 def resetFolder():
     try:
         rmtree(minPath + "Website")
@@ -32,23 +34,26 @@ def resetFolder():
     shutil.copytree(websitePath, minPath + "Website")
 
     for dirPath, dirName, files in os.walk(minPath + "Website"):
-        if(".git" in dirPath):
+        if ".git" in dirPath:
             rmtree(dirPath)
             continue
         for filename in files:
-            if ".js" in filename or ".css" in filename or "index.html" in filename or "README.md" in files:
+            if ".js" in filename or ".css" in filename or "README.md" in filename:
                 os.remove(dirPath + "/" + filename)
         try:
             os.removedirs(dirPath)
         except OSError as e:
             0
 
+
 def minFile(path):
     ext = path[path.index(".") : len(path)]
     if ext == ".js":
-        return requests.post("https://javascript-minifier.com/raw", data={'input': open(path).read()}).text
+        jsfile = open(path).read()  # .replace("http://www.labspheretools.com", "")
+        return requests.post("https://javascript-minifier.com/raw", data={"input": jsfile}).text
     elif ext == ".css":
         return open(path).read().replace("\n", "").replace("    ", " ")
+
 
 def Minify():
     resetFolder()
@@ -62,7 +67,10 @@ def Minify():
     while i < len(html):
         if re.search(r"<script src='[^(http)]", html[i]):
             fileName = re.search(r"(?<=src=').+\.js", html[i]).group(0)
-            js += minFile(websitePath + fileName)  
+            if not "Data" in fileName:
+                js += minFile(websitePath + fileName)
+            else:
+                js += open(websitePath + fileName).read()
         elif re.search(r"<link rel='stylesheet' href='[^(http)]", html[i]):
             fileName = re.search(r"(?<=href=').+\.css", html[i]).group(0)
             css += minFile(websitePath + fileName)
@@ -79,10 +87,12 @@ def Minify():
                 js = ""
             min.write(html[i])
         else:
+            0
             if re.search(r"\w", html[i]):
-                min.write(html[i])
+                min.write(html[i])  # .replace("http://www.labspheretools.com", "")
         i += 1
     min.close()
+
 
 Minify()
 
